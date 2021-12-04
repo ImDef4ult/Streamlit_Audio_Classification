@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import librosa
-import io
-import keras
 import numpy as np
 from keras.models import model_from_json
 from sklearn.preprocessing import LabelEncoder
@@ -53,14 +51,14 @@ def extract_features(file_name):
 
 def predict(file, type):
     probabilities = pd.DataFrame(columns=['Category', 'Prob'])
-    model = cnn if type is 'cnn' else mlp
+    model = cnn if type == 'cnn' else mlp
     prediction_feature = extract_features(file)
     prediction_feature = prediction_feature.reshape(1, num_rows, num_columns, num_channels)
 
     predicted_vector = model.predict(prediction_feature)
     classes_x = np.argmax(predicted_vector, axis=1)
     predicted_class = le.inverse_transform(classes_x)
-    print("The predicted class is:", predicted_class[0], '\n')
+    # print("The predicted class is:", predicted_class[0], '\n')
 
     predicted_proba_vector = model.predict(prediction_feature)
     predicted_proba = predicted_proba_vector[0]
@@ -70,6 +68,7 @@ def predict(file, type):
         # print(category[0], "\t\t : ", format(predicted_proba[i], '.32f'))
 
     return predicted_class[0], probabilities
+
 
 try:
     # Load CNN model
