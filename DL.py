@@ -153,7 +153,18 @@ def main():
             street.pyplot(draw_spectrogram(file_path))
             st.audio(file_path)
 
-        st.header('Modelado')
+        st.header('Primeras aproximaciones')
+        vgg, cnn_specto = st.columns(2)
+        with vgg:
+            vgg.subheader('VGG')
+            imagevgg = Image.open('Resources/vgg.png')
+            vgg.image(imagevgg, use_column_width=True)
+        with cnn_specto:
+            cnn_specto.subheader('CNN usando espectogramas')
+            imagecnn_specto = Image.open('Resources/cnn_specto.png')
+            cnn_specto.image(imagecnn_specto, use_column_width=True)
+
+        st.header('Modelos con mejor rendimiento')
         mlp, cnn = st.columns(2)
         with mlp:
             mlp.subheader('MLP')
