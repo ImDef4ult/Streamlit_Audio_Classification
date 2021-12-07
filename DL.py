@@ -157,8 +157,12 @@ def main():
         mlp, cnn = st.columns(2)
         with mlp:
             mlp.subheader('MLP')
+            imagemlp = Image.open('Resources/MLP.png')
+            mlp.image(imagemlp, use_column_width=True)
         with cnn:
             cnn.subheader('CNN')
+            imagecnn = Image.open('Resources/SimpleCNN.png')
+            cnn.image(imagecnn, use_column_width=True)
 
     else:
         st.header(user_file.name)

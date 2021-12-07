@@ -22,13 +22,13 @@ def draw_spectrogram(file_name):
 def load_model(model):
     try:
         # Load the model
-        json_file = open(f'models/cnn.json')
+        json_file = open('models/cnn_tunned.json')
         json_model = json_file.read()
         json_file.close()
 
         # Load the weights
         model = model_from_json(json_model)
-        model.load_weights(f'models/cnn.h5')
+        model.load_weights('models/cnn_tunned.h5')
         print(f'Model {model} loaded! ')
         return model
     except Exception as e:
